@@ -2,6 +2,8 @@ import java.util.Random;
 
 public class Täring {
     private int min, max;
+    private static final Random random = new Random();
+
     public Täring(int min, int max) {
         this.min = min;
         this.max = max;
@@ -13,7 +15,7 @@ public class Täring {
     }
 
     int viska(){
-        return (int) (Math.random()*(max-min+1)+min);
+        return random.nextInt(max - min + 1) + min;
     };
 
     @Override
