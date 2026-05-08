@@ -5,7 +5,7 @@ public class Joonistaja {
     double x_aspekt, y_aspekt;
     char[][] maatriks;
 
-
+//gdrsgbhehtrjtrjrethgrwrewhrhg42
     public Joonistaja(Simulaator simulaator, int x, int y) {
         this.simulaator = simulaator;
 
