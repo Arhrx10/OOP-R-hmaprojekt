@@ -1,0 +1,34 @@
+import java.io.Serializable;
+import java.util.Random;
+
+public class Täring implements Serializable {
+    private int min, max;
+    private static final Random random = new Random();
+
+    public Täring(int min, int max) {
+        this.min = min;
+        this.max = max;
+    }
+
+    public Täring() {
+        this.min = 1;
+        this.max = 6;
+    }
+
+    int viska(){
+        return random.nextInt(max - min + 1) + min;
+    };
+
+    @Override
+    public String toString() {
+        return String.valueOf(viska());
+    }
+
+    public int getMin() {
+        return min;
+    }
+
+    public int getMax() {
+        return max;
+    }
+}
