@@ -23,7 +23,7 @@ public class GraafikLava {
 
         // Pealkiri
         Font font = new Font(20);
-        Label pealkiri = new Label("Simulatsioon tulemused:");
+        Label pealkiri = new Label("Simulatsiooni tulemused:");
         pealkiri.setFont(font);
         pealkiri.setMaxWidth(Double.MAX_VALUE);
         pealkiri.setAlignment(Pos.CENTER);

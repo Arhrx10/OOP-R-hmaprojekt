@@ -21,9 +21,8 @@ public class Menüü {
         pealkiri.setFont(Font.font("System", FontWeight.BOLD, 16));
 
         Label kirjeldus = new Label(
-                "Sisesta matemaatiline võrrand, kus x tähistab täringu väärtust (1–6).\n" +
-                        "Iga x sümbol simuleerib eraldi täringu viska.\n" +
-                        "Näide: \"(x+x)*2+7\"  —  siin on kaks eraldi täringuvisset korrutatud 2-ga ja liidetud 7-ga.\n" +
+                "Sisesta matemaatiline võrrand, kus x tähistab täringu väärtust (1–6). Iga x simuleerib eraldi täringuviset.\n" +
+                        "Näide: \"(x+x)*2+7\", kusjuures x+x on erinev 2*x -st, kuna iga sümbol x-ist simuleerib eraldi täringu väärtust, 2*x aga ainult ühe.\n"+
                         "NB! Jagamine ei ole toetatud."
         );
         kirjeldus.setWrapText(true);
