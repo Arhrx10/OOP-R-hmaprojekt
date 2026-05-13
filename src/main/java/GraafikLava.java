@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class GraafikLava {
@@ -23,7 +24,7 @@ public class GraafikLava {
 
         // Pealkiri
         Font font = new Font(20);
-        Label pealkiri = new Label("Simulatsiooni tulemused:");
+        Label pealkiri = new Label("Simulatsioon tulemused:");
         pealkiri.setFont(font);
         pealkiri.setMaxWidth(Double.MAX_VALUE);
         pealkiri.setAlignment(Pos.CENTER);
@@ -68,10 +69,27 @@ public class GraafikLava {
         Button salvestaFailiNupp = new Button("Salvesta faili");
         salvestaFailiNupp.setOnAction(e -> FailiLiides.salvestaFaili("graafik.dat", simulaator));
 
-        nupurida.getChildren().addAll(tagasiNupp, salvestaFailiNupp);
+        // vahe
+        Region vahe = new Region();
+        HBox.setHgrow(vahe, Priority.ALWAYS);
+
+        // statistika
+        Font statsFont = Font.font("System", FontWeight.NORMAL, 13);
+        Label exSilt  = new Label("E(X) = " + simulaator.getKeskväärtus());
+        Label dxSilt  = new Label("D(X) = " + simulaator.getDispersioon());
+        Label stdSilt = new Label("σ = "    + simulaator.getStandardhälve());
+
+        exSilt.setFont(statsFont);
+        dxSilt.setFont(statsFont);
+        stdSilt.setFont(statsFont);
+
+        HBox statistika = new HBox(20, exSilt, dxSilt, stdSilt);
+        statistika.setAlignment(Pos.CENTER_RIGHT);
+
+        nupurida.getChildren().addAll(tagasiNupp, salvestaFailiNupp,vahe,statistika);
         juur.getChildren().add(nupurida);
 
-        // Swap the scene root instead of creating a new scene
+        // vahetab juure
         stage.getScene().setRoot(juur);
         stage.setTitle("Simulatsioon");
     }
