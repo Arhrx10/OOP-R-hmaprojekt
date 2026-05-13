@@ -1,14 +1,12 @@
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
-import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -21,6 +19,7 @@ public class GraafikLava {
 
     public void show(Stage stage) {
         VBox juur = new VBox();
+        juur.setPadding(new Insets(10));
 
         // Pealkiri
         Font font = new Font(20);
@@ -30,7 +29,7 @@ public class GraafikLava {
         pealkiri.setAlignment(Pos.CENTER);
         juur.getChildren().add(pealkiri);
 
-        //Graafik
+        // Graafik
         CategoryAxis xTelg = new CategoryAxis();
         NumberAxis yTelg = new NumberAxis();
 
@@ -38,21 +37,19 @@ public class GraafikLava {
         yTelg.setLabel("Simulatsiooni tulemuste arv");
 
         BarChart<String, Number> graafik = new BarChart<>(xTelg, yTelg);
-//        graafik.setTitle("Simulatsioon");
         graafik.setTitle(null);
 
         XYChart.Series<String, Number> series = new XYChart.Series<>();
 
         int maxX = simulaator.väärtusePiirkonnaSuurus();
-//        int maxY = simulaator.maksimumTäringuteVäärtus();
-
-        //Laeme sisse simulatsiooni tulemused
         for (int i = 0; i < maxX; i++) {
-            series.getData().add(new XYChart.Data<>(String.valueOf(i+simulaator.miinimumTäringuteVäärtus()), simulaator.getViimaneSimulatsioon().get(i)));
+            series.getData().add(new XYChart.Data<>(
+                    String.valueOf(i + simulaator.miinimumTäringuteVäärtus()),
+                    simulaator.getViimaneSimulatsioon().get(i)
+            ));
         }
         graafik.getData().add(series);
 
-        // Visuaalsed parandused graafikule
         graafik.setBarGap(-3);
         graafik.setLegendVisible(false);
 
@@ -60,19 +57,22 @@ public class GraafikLava {
         graafik.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         juur.getChildren().add(graafik);
 
-        // Nupp
-        Button nupp = new Button();
-        nupp.setText("Salvesta faili.");
-        nupp.setOnMousePressed(e -> FailiLiides.salvestaFaili("graafik.dat", simulaator));
-        nupp.setTranslateX(90);
-        juur.getChildren().add(nupp);
+        // Nupurida alumises osas
+        HBox nupurida = new HBox(10);
+        nupurida.setPadding(new Insets(8, 0, 0, 0));
+        nupurida.setAlignment(Pos.CENTER_LEFT);
 
+        Button tagasiNupp = new Button("← Tagasi menüüsse");
+        tagasiNupp.setOnAction(e -> new Menüü().show(stage));
 
+        Button salvestaFailiNupp = new Button("Salvesta faili");
+        salvestaFailiNupp.setOnAction(e -> FailiLiides.salvestaFaili("graafik.dat", simulaator));
 
-        Scene scene = new Scene(juur, 800, 600);
-        stage.setScene(scene);
-        juur.minWidth(scene.getWidth());
+        nupurida.getChildren().addAll(tagasiNupp, salvestaFailiNupp);
+        juur.getChildren().add(nupurida);
+
+        // Swap the scene root instead of creating a new scene
+        stage.getScene().setRoot(juur);
         stage.setTitle("Simulatsioon");
-        stage.show();
     }
 }

@@ -9,13 +9,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Simulaator simulaator = FailiLiides.loeFailist("graafik.dat");
-
-//        Simulaator simulaator = new Simulaator();
-//
-//        simulaator.setValem("x+x");
-//        simulaator.simuleeri(100000);
-
-        new GraafikLava(simulaator).show(stage);
+        //käivitab programmi
+        new Menüü().show(stage);
     }
 }
