@@ -62,7 +62,7 @@ public class GraafikLava {
         nupurida.setPadding(new Insets(8, 0, 0, 0));
         nupurida.setAlignment(Pos.CENTER_LEFT);
 
-        Button tagasiNupp = new Button("← Tagasi menüüsse");
+        Button tagasiNupp = new Button("Tagasi menüüsse");
         tagasiNupp.setOnAction(e -> new Menüü().show(stage));
 
         Button salvestaFailiNupp = new Button("Salvesta faili");
