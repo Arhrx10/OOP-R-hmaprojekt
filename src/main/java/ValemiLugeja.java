@@ -19,7 +19,7 @@ public class ValemiLugeja implements Serializable {
         this.pos = 0;
         Map<String, Täring> muutujadList = new HashMap<>();
         muutujadList.put("x", new Täring());
-        muutujadList.put("y", new Täring(0, 1));
+//        muutujadList.put("y", new Täring(0, 1));
 
         this.muutujad = muutujadList;
     }

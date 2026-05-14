@@ -17,6 +17,4 @@ static void main(String[] args) {
     System.out.println("Standardhälve: " + sim.getStandardhälve());
 
 
-
-
 }

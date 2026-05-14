@@ -23,7 +23,7 @@ public class Menüü {
         Label kirjeldus = new Label(
                 "Sisesta matemaatiline võrrand, kus x tähistab täringu väärtust (1–6). Iga x simuleerib eraldi täringuviset.\n" +
                         "Näide: \"(x+x)*2+7\", kusjuures x+x on erinev 2*x -st, kuna iga sümbol x-ist simuleerib eraldi täringu väärtust, 2*x aga ainult ühe.\n"+
-                        "NB! Jagamine ei ole toetatud."
+                        "NB! Jagamine ja x-i negatiivse arvuga korrutamine ei ole toetatud."
         );
         kirjeldus.setWrapText(true);
         kirjeldus.setFont(Font.font("System", 13));
@@ -31,7 +31,7 @@ public class Menüü {
         ülaosa.getChildren().addAll(pealkiri, kirjeldus);
         juur.setTop(ülaosa);
 
-        // --- Keskel: sisestusväli ja nupud ---
+        // Keskel sisestusväli ja nupud
         HBox keskel = new HBox(20);
         keskel.setAlignment(Pos.CENTER_LEFT);
         keskel.setPadding(new Insets(20, 0, 0, 0));
@@ -69,7 +69,7 @@ public class Menüü {
             }
             try {
                 Simulaator simulaator = new Simulaator(valem);
-                simulaator.simuleeri(100000);
+                simulaator.simuleeri(1000000);
                 new GraafikLava(simulaator).show(stage);
             } catch (Exception ex) {
                 näitaViga("Vigane valem", "Võrrandit ei õnnestunud tõlgendada:\n" + ex.getMessage());
@@ -96,6 +96,11 @@ public class Menüü {
         stage.show();
     }
 
+    /**
+     * Meetod vigade näitamiseks
+     * @param pealkiri Vea pealkiri
+     * @param sõnum Vea sõnum
+     */
     private void näitaViga(String pealkiri, String sõnum) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Viga");

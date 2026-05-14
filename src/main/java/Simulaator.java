@@ -10,11 +10,6 @@ public class Simulaator implements Serializable {
 
     public Simulaator() {}
 
-    public void setValem(String sisendVorrand) {
-        this.valem = sisendVorrand;
-        lugeja = new ValemiLugeja(sisendVorrand);
-    }
-
     public Simulaator(String sisendVorrand) {
         this.valem = sisendVorrand;
         lugeja = new ValemiLugeja(sisendVorrand);

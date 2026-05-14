@@ -26,6 +26,7 @@ public class GraafikLava {
         Font font = new Font(20);
         Label pealkiri = new Label("Simulatsioon tulemused:");
         pealkiri.setFont(font);
+        // Pealkiri keskele
         pealkiri.setMaxWidth(Double.MAX_VALUE);
         pealkiri.setAlignment(Pos.CENTER);
         juur.getChildren().add(pealkiri);
@@ -33,15 +34,14 @@ public class GraafikLava {
         // Graafik
         CategoryAxis xTelg = new CategoryAxis();
         NumberAxis yTelg = new NumberAxis();
-
         xTelg.setLabel("Väärtus");
         yTelg.setLabel("Simulatsiooni tulemuste arv");
 
         BarChart<String, Number> graafik = new BarChart<>(xTelg, yTelg);
         graafik.setTitle(null);
-
         XYChart.Series<String, Number> series = new XYChart.Series<>();
 
+        // Lisame kõik tulemused
         int maxX = simulaator.väärtusePiirkonnaSuurus();
         for (int i = 0; i < maxX; i++) {
             series.getData().add(new XYChart.Data<>(
@@ -53,7 +53,6 @@ public class GraafikLava {
 
         graafik.setBarGap(-3);
         graafik.setLegendVisible(false);
-
         VBox.setVgrow(graafik, Priority.ALWAYS);
         graafik.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         juur.getChildren().add(graafik);
